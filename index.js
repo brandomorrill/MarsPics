@@ -83,7 +83,6 @@ function downloadImageList(args) {
 function downloadImages(images) {
     return destinationPrompt().then(destination => {
         images.forEach(image => {
-            //console.log('image', image);
             let options = {
                 url: image,
                 dest: destination.match(/\/$/) ? destination : destination + '/'
@@ -91,8 +90,9 @@ function downloadImages(images) {
             wget(options, (error, response) => {
                 if (error) {
                     console.error("An error has occured: ", error);
+                } else {
+                    console.log(`Downloaded image: ${image}`);
                 }
-                console.log(`Downloaded image: ${image}`);
             });
         });
     });
